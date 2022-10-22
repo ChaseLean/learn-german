@@ -20,7 +20,7 @@ var hist = [];
 
 var setValue = function () {
     var i = Math.floor(Math.random() * data.length);
-    while (hist.slice(-3).includes(data[i])) {
+    while (hist.slice(-15).includes(data[i])) {
         i = Math.floor(Math.random() * data.length);
     }
     var value = data[i];
