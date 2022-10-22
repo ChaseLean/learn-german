@@ -1,0 +1,111 @@
+:root {
+    --blueish-white: rgb(240, 245, 255);
+}
+
+@font-face {
+    font-family: "Lora";
+    src: url("lora.ttf");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "Lora";
+    font-size: 30px;
+    color: black;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+svg {
+    stroke: var(--blueish-white);
+    fill: transparent;
+}
+
+#container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("background.jpg");
+}
+
+#flip-card {
+    width: 250px;
+    min-width: 250px;
+    height: 400px;
+    min-height: 400px;
+    perspective: 1000px;
+    text-align: center;
+}
+
+.flip-side {
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px 2px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+#flip-card.rotated #flip-card-inner {
+    transform: rotateY(-180deg);
+}
+
+/* Position the front and back side */
+#flip-card-front, #flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    /* Safari */
+    backface-visibility: hidden;
+}
+
+/* Style the front side */
+#flip-card-front {
+    background-color: var(--blueish-white);
+    color: black;
+}
+
+/* Style the back side */
+#flip-card-back {
+    background-color: var(--blueish-white);
+    transform: rotateY(-180deg);
+}
+
+.sidebar {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.sidebar:hover {
+    transform: scale(1.1);
+}
+
+#meaning {
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 70px;
+}
+
+.words {
+    opacity: 1;
+    margin: 10px;
+}
