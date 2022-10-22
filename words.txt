@@ -1,1 +1,0 @@
-[['to help', 'helfen ', 'half', 'geholfen '], ['to know ', 'kennen', 'kannte ', 'gekannt'], ['to sound ', 'klingen', 'klang', 'geklungen '], ['to come ', 'kommen ', 'kam ', 'gekommen '], ['to load ', 'laden ', 'lud', 'geladen '], ['to let', 'lassen', 'ließ', 'gelassen']]

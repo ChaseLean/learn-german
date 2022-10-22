@@ -5,40 +5,38 @@ var present = document.getElementById("present");
 var past = document.getElementById("past");
 var pastParticiple = document.getElementById("past-participle");
 
-readStringFromFileAtPath = function(pathOfFileToReadFrom)
-    {
-        var request = new XMLHttpRequest();
-        request.open("GET", pathOfFileToReadFrom, false);
-        request.send(null);
-        var returnValue = request.responseText;
+readStringFromFileAtPath = function (pathOfFileToReadFrom) {
+    var request = new XMLHttpRequest();
+    request.open("GET", pathOfFileToReadFrom, false)
+    request.send(null);
+    var returnValue = request.responseText;
 
-        return returnValue;
-    }
-
-
-var values = eval(readStringFromFileAtPath ( "words.txt" ));
-var words = [present, past, pastParticiple];
-var hist = [];
-
-var setValue = function() {
-    var i = Math.floor(Math.random() * values.length);
-    while(hist.slice(-3).includes(values[i])){
-        i = Math.floor(Math.random() * values.length);
-    }
-    var value = values[i];
-    hist.push(value)
-
-    meaning.innerHTML = value[0];
-    present.innerHTML = value[1];
-    past.innerHTML = value[2];
-    pastParticiple.innerHTML = value[3];
+    return returnValue;
 }
 
-var rotate = function() {
-    if(flipCard.classList.contains("rotated")){
+var csv = readStringFromFileAtPath("german_words.csv");
+var data = $.csv.toObjects(csv);
+var hist = [];
+
+var setValue = function () {
+    var i = Math.floor(Math.random() * data.length);
+    while (hist.slice(-3).includes(data[i])) {
+        i = Math.floor(Math.random() * data.length);
+    }
+    var value = data[i];
+    hist.push(value)
+
+    meaning.innerHTML = value.Meaning;
+    present.innerHTML = value.Present;
+    past.innerHTML = value.Past;
+    pastParticiple.innerHTML = value.PastParticiple;
+}
+
+var rotate = function () {
+    if (flipCard.classList.contains("rotated")) {
         flipCard.classList.remove("rotated");
     }
-    else{
+    else {
         flipCard.classList.add("rotated");
     }
 }
@@ -49,7 +47,7 @@ flipCard.onclick = rotate
 document.addEventListener('keydown', (e) => {
     e = e || window.event;
     if (e.key === "ArrowRight") {
-      setValue();
+        setValue();
     }
     else if (e.key == " ") {
         rotate();
