@@ -34,11 +34,7 @@ var setValue = function() {
     pastParticiple.innerHTML = value[3];
 }
 
-rightSideBar.onclick = function() {
-    setValue();
-}
-
-flipCard.onclick = function() {
+var rotate = function() {
     if(flipCard.classList.contains("rotated")){
         flipCard.classList.remove("rotated");
     }
@@ -46,5 +42,18 @@ flipCard.onclick = function() {
         flipCard.classList.add("rotated");
     }
 }
+
+rightSideBar.onclick = setValue
+flipCard.onclick = rotate
+
+document.addEventListener('keydown', (e) => {
+    e = e || window.event;
+    if (e.key === "ArrowRight") {
+      setValue();
+    }
+    else if (e.key == " ") {
+        rotate();
+    }
+})
 
 setValue();
