@@ -14,13 +14,14 @@ readStringFromFileAtPath = function (pathOfFileToReadFrom) {
     return returnValue;
 }
 
-var csv = readStringFromFileAtPath("german_words.csv");
+var csv = readStringFromFileAtPath("output.csv");
 var data = $.csv.toObjects(csv);
+data = data.filter(item => item.Meaning !== "")
 var hist = [];
 
 var setValue = function () {
     var i = Math.floor(Math.random() * data.length);
-    while (hist.slice(-15).includes(data[i])) {
+    while (hist.slice(-3).includes(data[i])) {
         i = Math.floor(Math.random() * data.length);
     }
     var value = data[i];
@@ -33,16 +34,9 @@ var setValue = function () {
 }
 
 var rotate = function () {
-    if (flipCard.classList.contains("rotated")) {
-        flipCard.classList.remove("rotated");
-    }
-    else {
-        flipCard.classList.add("rotated");
-    }
+    if (flipCard.classList.contains("rotated")) flipCard.classList.remove("rotated");
+    else flipCard.classList.add("rotated");
 }
-
-rightSideBar.onclick = setValue
-flipCard.onclick = rotate
 
 document.addEventListener('keydown', (e) => {
     e = e || window.event;
@@ -53,5 +47,8 @@ document.addEventListener('keydown', (e) => {
         rotate();
     }
 })
+
+rightSideBar.onclick = setValue
+flipCard.onclick = rotate
 
 setValue();
